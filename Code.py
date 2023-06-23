@@ -1,3 +1,5 @@
+import csv
+
 def hamming_neighbors(sequence):
     neighbors = []
     bases = ['A', 'C', 'G', 'T']
@@ -14,4 +16,14 @@ def hamming_neighbors(sequence):
 # Example usage
 sequence = "AAACGCAATAGCAGATACC"
 result = hamming_neighbors(sequence)
-print(result)
+
+# Export the results as a CSV file
+csv_filename = "hamming_neighbors.csv"
+
+with open(csv_filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Original Sequence", "Hamming Neighbor"])
+    for neighbor in result:
+        writer.writerow([sequence, neighbor])
+
+print(f"Results exported to {csv_filename}")
